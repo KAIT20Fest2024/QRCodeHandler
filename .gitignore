@@ -1,4 +1,4 @@
 env/*
 __pycache__/*
 *.pyc
-
+app/__pycache__/*
