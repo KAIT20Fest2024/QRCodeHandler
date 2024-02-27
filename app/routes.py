@@ -85,3 +85,27 @@ def create():
         return redirect(url_for('admin'))
 
     return render_template("create.html")
+
+@app.route("/scoreboard")
+def scoreboard():
+    mc = MasterClass.query.all()
+    u = User.query.all()
+
+    f = mc[0].users.filter(User.uid==1)
+    print(f[0])
+    return render_template("scoreboard.html", mc=mc)
+
+@app.route("/qrhandler/<mcid>")
+def qrhandler(mcid):
+    mc = MasterClass.query.get(mcid)
+    u = User.query.get(1)
+    print(mc)
+    if not(u in mc.users):
+        u.score = u.score + mc.score
+        mc.users.append(u)
+        db.session.commit()
+    else:
+        print("error lol")
+    
+    return render_template("qrhandler.html", score=mc.score, user_score=u.score)
+
