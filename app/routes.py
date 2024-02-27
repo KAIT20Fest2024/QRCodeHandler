@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from app import app, db, login_manager
 from app.forms import LoginForm, SignupForm
 
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
-from app.models import User
+from app.models import User, MasterClass
+
+import qrcode, base64
 
 
 @login_manager.user_loader
@@ -53,3 +55,33 @@ def logout():
 def profile(username: str):
     user = User.query.filter(User.login == username).first()
     return render_template("profile.html", user=user) if hasattr(user, 'uid') else redirect(url_for('index'))
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    masterClasses = MasterClass.query.all()
+    for m in masterClasses:
+        img = qrcode.make(f"localhost/qrhandler/{m.uid}")
+        img.save('app/'+url_for('static', filename='qr/')+str(m.uid)+'.png')
+    return render_template("admin.html", mc = masterClasses)
+
+@app.route("/admin/edit/<count>", methods=["GET", "POST"])
+def edit(count):
+    if request.method == "POST":
+        mc = MasterClass.query.filter_by(uid=count).first()
+        mc.name = request.form.get('name')
+        mc.context = request.form.get('context')
+        mc.score = request.form.get('score')
+        db.session.commit()
+        return redirect(url_for('admin'))
+
+    return render_template("edit.html")
+
+@app.route("/admin/create", methods=["GET", "POST"])
+def create():
+    if request.method == "POST":
+        mc = MasterClass(name=request.form.get('name'),context=request.form.get('context'),score=request.form.get('score'))
+        db.session.add(mc)
+        db.session.commit()
+        return redirect(url_for('admin'))
+
+    return render_template("create.html")
