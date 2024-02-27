@@ -1,5 +1,6 @@
 from datetime import datetime
 from app import db
+from flask_login import UserMixin
 
 ''' If this will work I'll kill myself
 tags = db.Table('tags',
@@ -21,7 +22,7 @@ attendance = db.Table("attendance",
     db.Column('masterclass_id', db.Integer, db.ForeignKey('masterclasses.uid'), primary_key=True)
 )
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__='users'
     uid = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String(128), index=True, unique=True)
@@ -30,6 +31,9 @@ class User(db.Model):
     last_name = db.Column(db.String(64), index=True, unique=False)
     school_name = db.Column(db.String(128), index=True, unique=False)
     password = db.Column(db.String(128))
+
+    def get_id(self):
+        return self.uid
 
     def __repr__(self):
         return '<User {}>'.format(self.login)

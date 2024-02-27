@@ -5,6 +5,14 @@
   </head>
   <body>
     <h1>Sign in to admin board</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+      <p style="color: red; background-color: pink;">{{ message }}</p>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     <form action="" method="post" novalidate>
       {{ form.hidden_tag() }}
 
