@@ -29,6 +29,7 @@ class User(db.Model):
     father_name = db.Column(db.String(64), index=True, unique=False)
     last_name = db.Column(db.String(64), index=True, unique=False)
     school_name = db.Column(db.String(128), index=True, unique=False)
+    score=db.Column(db.Integer, default=0)
     password = db.Column(db.String(128))
 
     def __repr__(self):
@@ -42,7 +43,7 @@ class MasterClass(db.Model):
     score = db.Column(db.Integer)
     createdAt = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     updatedAt = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    users = db.relationship('User', secondary=attendance, lazy='subquery', backref=db.backref('masterclasses', lazy=True))
+    users = db.relationship('User', secondary=attendance, lazy='dynamic', backref=db.backref('masterclasses', lazy=True))
 
     def __repr__(self):
         return '<Masteclass {}>'.format(self.name)

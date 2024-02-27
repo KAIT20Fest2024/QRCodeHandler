@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scoreboard</title>
+  </head>
+  <body>
+    <p>{{mc[0].name}}<p>
+    {% for user in mc[0].users %}
+      <p>{{ user.login }}</p>
+    {% endfor %}
+  </body>
+</html>
