@@ -26,6 +26,7 @@
       {% endfor %}
       <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
       <p>{{ form.submit() }} </p>
+	  <sub>Don't have an account yet? <a href="{{ url_for('signup') }}">Sign up</a></sub>
 
     </form>
   </body>
