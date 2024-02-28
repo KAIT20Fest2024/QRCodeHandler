@@ -59,10 +59,4 @@ html:not([data-scroll='0']) {
     .header__logo img {
         width: 100px;
     }
-
-    .header__logo,
-    .header__nav,
-    .header__profile {
-        text-align: center;
-    }
 }
