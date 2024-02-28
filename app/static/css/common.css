@@ -3,6 +3,12 @@ body {
     margin: 0;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 @media (width >= 2000) {
     body {
         font-size: 30em;
