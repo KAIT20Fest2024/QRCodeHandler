@@ -1,33 +1,39 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Login to KAIT QR code factory</title>
-  </head>
-  <body>
-    <h1>Sign in to admin board</h1>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      {% for message in messages %}
-      <p style="color: red; background-color: pink;">{{ message }}</p>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    <form action="" method="post" novalidate>
-      {{ form.hidden_tag() }}
+{% extends 'components/base.html' %}
 
-      <p>{{ form.username.label }}<br>{{ form.username(size=32) }}</p>
-      {% for error in form.username.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
-      <p>{{ form.password.label }}<br>{{ form.password(size=32) }}</p>
-      {% for error in form.password.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
-      <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-      <p>{{ form.submit() }} </p>
-	  <sub>Don't have an account yet? <a href="{{ url_for('signup') }}">Sign up</a></sub>
+{% block title %}Login{% endblock %}
 
-    </form>
-  </body>
-</html>
+{% block body %}
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	{% for message in messages %}
+		<p style="color: red; background-color: pink;">{{ message }}</p>
+	{% endfor %}
+	{% endif %}
+	{% endwith %}
+
+	<form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+
+            {% for error in form.username.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+
+        <p>{{ form.submit() }} </p>
+        <sub>Don't have an account yet? <a href="{{ url_for('signup') }}">Sign up</a></sub>
+	</form>
+{% endblock %}

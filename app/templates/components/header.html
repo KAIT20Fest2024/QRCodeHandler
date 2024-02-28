@@ -1,0 +1,8 @@
+<header>
+	<span><a href="/">Home</a></span>
+	{% if current_user.is_authenticated %}
+	<span><a href="{{ url_for('profile', username=current_user.login) }}">{{ current_user.login }}</a></span>
+	{% else %} 
+	<span><a href="{{ url_for('login') }}">Login</a></span>
+	{% endif %}
+</header>

@@ -1,52 +1,70 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Sign up to KAIT QR code factory</title>
-  </head>
-  <body>
-    <h1>Sign up to admin board</h1>
-    <form action="" method="post" novalidate>
-      {{ form.hidden_tag() }}
+{% extends 'components/base.html' %}
 
-      <p>{{ form.username.label }}<br>{{ form.username(size=32) }}</p>
-      {% for error in form.username.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
+{% block title %}Sign up{% endblock %}
 
-      <p>{{ form.fname.label }}<br>{{ form.fname(size=32) }}</p>
-      {% for error in form.fname.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
+{% block body %}
+	<form action="" method="post" novalidate>
+	{{ form.hidden_tag() }}
 
-      <p>{{ form.mname.label }}<br>{{ form.mname(size=32) }}</p>
-      {% for error in form.mname.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
+	<p>
+        {{ form.username.label }}<br>
+        {{ form.username(size=32) }}<br>
+        {% for error in form.username.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </p>
 
-      <p>{{ form.lname.label }}<br>{{ form.lname(size=32) }}</p>
-      {% for error in form.lname.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
+	<p>
+        {{ form.fname.label }}<br>
+        {{ form.fname(size=32) }}<br>
+        {% for error in form.fname.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </p>
 
-      <p>{{ form.school.label }}<br>{{ form.school(size=32) }}</p>
-      {% for error in form.school.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
+	<p>
+        {{ form.mname.label }}<br>
+        {{ form.mname(size=32) }}<br>
+        {% for error in form.mname.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </p>
 
-      <p>{{ form.password.label }}<br>{{ form.password(size=32) }}</p>
-      {% for error in form.password.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
+	<p>
+        {{ form.lname.label }}<br>
+        {{ form.lname(size=32) }}<br>
+        {% for error in form.lname.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </p>
 
-      <p>{{ form.confirm_password.label }}<br>{{ form.confirm_password(size=32) }}</p>
-      {% for error in form.confirm_password.errors %}
-      <span style="color: red;">{{ error }}</span>
-      {% endfor %}
+	<p>
+        {{ form.school.label }}<br>
+        {{ form.school(size=32) }}<br>
+        {% for error in form.school.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </p>
 
-      <p>{{ form.submit() }} </p>
+	<p>
+        {{ form.password.label }}<br>
+        {{ form.password(size=32) }}<br>
+        {% for error in form.password.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </p>
 
-	  <sub>Already have an account? <a href="{{ url_for('login') }}">Login</a></sub>
+	<p>
+        {{ form.confirm_password.label }}<br>
+        {{ form.confirm_password(size=32) }}<br>
+        {% for error in form.confirm_password.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </p>
 
-    </form>
-  </body>
-</html>
+	<p>{{ form.submit() }} </p>
+
+	<sub>Already have an account? <a href="{{ url_for('login') }}">Login</a></sub>
+
+	</form>
+{% endblock %}

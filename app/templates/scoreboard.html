@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Scoreboard</title>
-  </head>
-  <body>
+{% extends 'components/base.html' %}
+
+{% block title %}Scoreboard{% endblock %}
+
+{% block body %}
     <p>{{mc[0].name}}<p>
     {% for user in mc[0].users %}
       <p>{{ user.login }}</p>
     {% endfor %}
-  </body>
-</html>
+{% endblock %}

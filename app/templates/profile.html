@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>KAIT20 QR code factory</title>
-  </head>
-  <body>
+{% extends 'components/base.html' %}
+
+{% block title %}{{ user.login }}'s Profile{% endblock %}
+
+{% block body %}
     <h1>{{ user.login }}</h1>
 	<p><b>ФИО: </b>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</p>
 	<p><b>Школа: </b>{{ user.school_name }}</p>
+	<p><b>Счёт: </b>{{ user.score }}</p>
+	{% if current_user.login == 'ADMIN' %}
+	<p><a href='/admin'><b>THE SUPREMACY</b></a></p>
+	{% endif %}
 
 	{% if current_user.login == user.login %}
 	<form action='/logout' method='GET'>
 		<input type='submit' value='Log out'>
 	</form>
 	{% endif %}
-  </body>
-</html>
+{% endblock %}

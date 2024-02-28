@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Success!</title>
-  </head>
-  <body>
+{% extends 'components/base.html' %}
+
+{% block title %}Success!{% endblock %}
+
+{% block body %}
     <h1>You've got an {{score}}!</h1>
     <p>You're current score is: {{user_score}}</p>
-  </body>
-</html>
+{% endblock %}

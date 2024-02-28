@@ -9,6 +9,15 @@ from app.models import User, MasterClass
 import qrcode, base64
 
 
+def admin_required(route):
+    def admin_wrapper(*args, **kwargs):
+        if current_user.login == "ADMIN":
+            return route(*args, **kwargs)
+        else:
+            return redirect(url_for("index"))
+    return admin_wrapper
+
+
 @login_manager.user_loader
 def user_loader(uid: int):
     return User.query.get(int(uid))
@@ -17,8 +26,7 @@ def user_loader(uid: int):
 @app.route("/")
 @app.route("/index")
 def index():
-    userModel = {'username': 'admin'}
-    return render_template("index.html", user=userModel)
+    return render_template("index.html")
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -56,6 +64,7 @@ def profile(username: str):
     user = User.query.filter(User.login == username).first()
     return render_template("profile.html", user=user) if hasattr(user, 'uid') else redirect(url_for('index'))
 
+@admin_required
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     masterClasses = MasterClass.query.all()
@@ -64,18 +73,21 @@ def admin():
         img.save('app/'+url_for('static', filename='qr/')+str(m.uid)+'.png')
     return render_template("admin.html", mc = masterClasses)
 
+@admin_required
 @app.route("/admin/edit/<count>", methods=["GET", "POST"])
 def edit(count):
-    if request.method == "POST":
-        mc = MasterClass.query.filter_by(uid=count).first()
-        mc.name = request.form.get('name')
+    mc = MasterClass.query.get(count)
+    if mc:
+        if request.method == 'GET':
+            print(f"EDITING: {mc.name}")
+            return render_template("edit.html", mc=mc)
+        mc.name = request.form.get('mc_name')
         mc.context = request.form.get('context')
         mc.score = request.form.get('score')
         db.session.commit()
-        return redirect(url_for('admin'))
+    return redirect(url_for('admin'))
 
-    return render_template("edit.html")
-
+@admin_required
 @app.route("/admin/create", methods=["GET", "POST"])
 def create():
     if request.method == "POST":
@@ -86,6 +98,7 @@ def create():
 
     return render_template("create.html")
 
+@login_required
 @app.route("/scoreboard")
 def scoreboard():
     mc = MasterClass.query.all()
@@ -96,6 +109,7 @@ def scoreboard():
     return render_template("scoreboard.html", mc=mc)
 
 @app.route("/qrhandler/<mcid>")
+@login_required
 def qrhandler(mcid):
     mc = MasterClass.query.get(mcid)
     u = User.query.get(1)

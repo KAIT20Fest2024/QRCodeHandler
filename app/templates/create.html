@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'components/base.html' %}
+
+{% block title %}Create a masterclass{% endblock %}
+
+{% block body %}
     <a href="{{url_for('admin')}}"><button>Назад</button></a>
     <form method="POST">
         <label for="name">Название мастеркласса: </label>
@@ -13,8 +10,7 @@
         <label for="context">Описание мастеркласса: </label>
         <input type="text" name="context" id="context">
         <label for="score">Баллов за мастеркласс: </label>
-        <input type="number" name="score" id="score" required />
+        <input type="number" name="score" id="score" min="0" required />
         <input type="submit" value="Сохранить"/>
     </form>
-</body>
-</html>
+{% endblock %}
