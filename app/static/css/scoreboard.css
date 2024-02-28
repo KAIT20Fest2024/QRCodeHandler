@@ -10,7 +10,7 @@ table {
 }
 
 th {
-    padding-bottom: 24px;
+    padding: 0 8px 24px 8px;
     text-align: start;
 }
 
@@ -25,5 +25,12 @@ td {
 
 @media (width <= 600px) {
     .wrapper {
+        padding: 0;
+        width: 95%;
+        margin: auto;
+    }
+
+    .scoreboard__score {
+        text-align: center;
     }
 }

@@ -2,3 +2,10 @@ body {
     padding: 0;
     margin: 0;
 }
+
+@media (width >= 2000) {
+    body {
+        font-size: 30em;
+        background-color: red;
+    }
+}

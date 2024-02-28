@@ -23,31 +23,7 @@
                 <td>{{ loop.index }}</td>
                 <td>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</td>
                 <td>{{ user.school_name }}</td>
-                <td>{{ user.score }}</td>
-            </tr>
-            {% endfor %}
-            {% for user in users %}
-            <tr {% if current_user.login == user.login %}class="scoreboard__current"{% endif %}>
-                <td>{{ loop.index }}</td>
-                <td>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</td>
-                <td>{{ user.school_name }}</td>
-                <td>{{ user.score }}</td>
-            </tr>
-            {% endfor %}
-            {% for user in users %}
-            <tr {% if current_user.login == user.login %}class="scoreboard__current"{% endif %}>
-                <td>{{ loop.index }}</td>
-                <td>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</td>
-                <td>{{ user.school_name }}</td>
-                <td>{{ user.score }}</td>
-            </tr>
-            {% endfor %}
-            {% for user in users %}
-            <tr {% if current_user.login == user.login %}class="scoreboard__current"{% endif %}>
-                <td>{{ loop.index }}</td>
-                <td>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</td>
-                <td>{{ user.school_name }}</td>
-                <td>{{ user.score }}</td>
+                <td class="scoreboard__score">{{ user.score }}</td>
             </tr>
             {% endfor %}
         </tbody>
