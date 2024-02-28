@@ -59,6 +59,10 @@ def logout():
     logout_user()
     return redirect(url_for("profile", username=username))
 
+@login_manager.unauthorized_handler
+def unathorized():
+    return redirect(url_for("login"))
+
 @app.route("/user/<username>")
 def profile(username: str):
     user = User.query.filter(User.login == username).first()
@@ -79,7 +83,6 @@ def edit(count):
     mc = MasterClass.query.get(count)
     if mc:
         if request.method == 'GET':
-            print(f"EDITING: {mc.name}")
             return render_template("edit.html", mc=mc)
         mc.name = request.form.get('mc_name')
         mc.context = request.form.get('context')
@@ -98,28 +101,22 @@ def create():
 
     return render_template("create.html")
 
-@login_required
 @app.route("/scoreboard")
 def scoreboard():
-    mc = MasterClass.query.all()
-    u = User.query.all()
-
-    f = mc[0].users.filter(User.uid==1)
-    print(f[0])
-    return render_template("scoreboard.html", mc=mc)
+    users = User.query.order_by(User.score.desc())
+    return render_template("scoreboard.html", users=users)
 
 @app.route("/qrhandler/<mcid>")
 @login_required
 def qrhandler(mcid):
     mc = MasterClass.query.get(mcid)
-    u = User.query.get(1)
-    print(mc)
-    if not(u in mc.users):
-        u.score = u.score + mc.score
-        mc.users.append(u)
-        db.session.commit()
+
+    if current_user in mc.users:
+        return redirect(url_for("profile", username=current_user.login))
     else:
-        print("error lol")
+        current_user.score += mc.score
+        mc.users.append(current_user)
+        db.session.commit()
     
-    return render_template("qrhandler.html", score=mc.score, user_score=u.score)
+    return render_template("qrhandler.html", mc_score=mc.score, user_score=current_user.score)
 

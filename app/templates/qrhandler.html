@@ -3,6 +3,6 @@
 {% block title %}Success!{% endblock %}
 
 {% block body %}
-    <h1>You've got an {{score}}!</h1>
-    <p>You're current score is: {{user_score}}</p>
+    <h1>You've received {{ mc_score }} point{% if mc_score > 1 %}s{% endif %}!</h1>
+    <p>Your current score is: {{ user_score }}</p>
 {% endblock %}

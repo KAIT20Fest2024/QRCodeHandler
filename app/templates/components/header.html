@@ -1,5 +1,12 @@
 <header>
 	<span><a href="/">Home</a></span>
+
+    <span><a href="{{ url_for('scoreboard') }}">Scoreboard</a></span>
+
+	{% if current_user.login == 'ADMIN' %}
+    <span><a href="{{ url_for('admin') }}"><b>ADMIN PANEL</b></a></span>
+	{% endif %}
+
 	{% if current_user.is_authenticated %}
 	<span><a href="{{ url_for('profile', username=current_user.login) }}">{{ current_user.login }}</a></span>
 	{% else %} 

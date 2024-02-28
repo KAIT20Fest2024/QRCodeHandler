@@ -1,10 +1,30 @@
 {% extends 'components/base.html' %}
 
+{% block head %}
+    <link href="{{ url_for('static', filename='scoreboard.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block title %}Scoreboard{% endblock %}
 
 {% block body %}
-    <p>{{mc[0].name}}<p>
-    {% for user in mc[0].users %}
-      <p>{{ user.login }}</p>
-    {% endfor %}
+    <table>
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>ФИО</th>
+                <th>Школа</th>
+                <th>Счёт</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr {% if current_user.login == user.login %}class="scoreboard__current"{% endif %}>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</td>
+                <td>{{ user.school_name }}</td>
+                <td>{{ user.score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

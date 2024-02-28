@@ -1,0 +1,4 @@
+.scoreboard__current {
+    font-weight: bold;
+    border: 3px solid red;
+}
