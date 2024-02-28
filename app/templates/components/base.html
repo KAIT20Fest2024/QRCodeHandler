@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Unbounded:wght@200..900&family=Yanone+Kaffeesatz:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
     {% block head %}{% endblock %}
 	<title>{% block title %}{% endblock %} | KAIT20FEST</title>
 </head>
-
+<div class="gradient">
 <body>
 	{% include 'components/header.html' %}
 
@@ -21,5 +25,5 @@
 {% block scripts %}
     <script src="{{ url_for('static', filename='js/header.js') }}"}></script>
 {% endblock %}
-
+</div>
 </html>
