@@ -17,11 +17,9 @@ def admin_required(route):
             return redirect(url_for("index"))
     return admin_wrapper
 
-
 @login_manager.user_loader
 def user_loader(uid: int):
     return User.query.get(int(uid))
-
 
 @app.route("/")
 @app.route("/index")
@@ -73,7 +71,7 @@ def profile(username: str):
 def admin():
     masterClasses = MasterClass.query.all()
     for m in masterClasses:
-        img = qrcode.make(f"localhost/qrhandler/{m.uid}")
+        img = qrcode.make(f"http://192.168.202.116:8080/qrhandler/{m.uid}")
         img.save('app/'+url_for('static', filename='qr/')+str(m.uid)+'.png')
     return render_template("admin.html", mc = masterClasses)
 
@@ -103,7 +101,7 @@ def create():
 
 @app.route("/scoreboard")
 def scoreboard():
-    users = User.query.order_by(User.score.desc())
+    users = User.query.order_by(User.score.desc()).filter(User.login != "ADMIN")
     return render_template("scoreboard.html", users=users)
 
 @app.route("/qrhandler/<mcid>")
