@@ -1,5 +1,7 @@
 {% extends 'components/base.html' %}
 
+{% block title %}Welcome{% endblock %}
+
 {% block body %}
 	{% if current_user.is_authenticated %}
 		<h1>Hello, {{ current_user.login }}</h1>

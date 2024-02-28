@@ -1,15 +1,19 @@
 <header>
-	<span><a href="/">Home</a></span>
+    <span class="header__logo"><a href="/"><img src="{{ url_for('static', filename='img/caps_logo.png') }}" class="header__logo"></a></span>
 
-    <span><a href="{{ url_for('scoreboard') }}">Scoreboard</a></span>
+    <nav class="header__nav">
+        <span><a href="{{ url_for('scoreboard') }}">Scoreboard</a></span>
 
-	{% if current_user.login == 'ADMIN' %}
-    <span><a href="{{ url_for('admin') }}"><b>ADMIN PANEL</b></a></span>
-	{% endif %}
+        {% if current_user.login == 'ADMIN' %}
+        <span><a href="{{ url_for('admin') }}"><b>ADMIN PANEL</b></a></span>
+        {% endif %}
+    </nav>
 
-	{% if current_user.is_authenticated %}
-	<span><a href="{{ url_for('profile', username=current_user.login) }}">{{ current_user.login }}</a></span>
-	{% else %} 
-	<span><a href="{{ url_for('login') }}">Login</a></span>
-	{% endif %}
+    <span class="header__profile">
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('profile', username=current_user.login) }}">{{ current_user.login }}</a>
+    {% else %} 
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+    </span>
 </header>

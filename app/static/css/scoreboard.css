@@ -1,0 +1,29 @@
+.wrapper {
+    margin: auto;
+    padding: 10px 30px;
+    width: 80%;
+}
+
+table {
+    width: inherit;
+    margin: inherit;
+}
+
+th {
+    padding-bottom: 24px;
+    text-align: start;
+}
+
+td {
+    padding: 8px 0;
+}
+
+.scoreboard__current {
+    font-weight: bold;
+    border: 3px solid red;
+}
+
+@media (width <= 600px) {
+    .wrapper {
+    }
+}

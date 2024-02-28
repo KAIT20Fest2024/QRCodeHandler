@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='common.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
     {% block head %}{% endblock %}
 	<title>{% block title %}{% endblock %} | KAIT20FEST</title>
 </head>
@@ -11,7 +12,14 @@
 <body>
 	{% include 'components/header.html' %}
 
-	{% block body %}{% endblock %}
+    <main>
+        {% block body %}{% endblock %}
+    </main>
 
 </body>
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/header.js') }}"}></script>
+{% endblock %}
+
 </html>
