@@ -1,4 +1,7 @@
-env/*
-__pycache__/*
+app/static/qr/
+
+env/
+venv/
+
+__pycache__/
 *.pyc
-app/__pycache__/*
