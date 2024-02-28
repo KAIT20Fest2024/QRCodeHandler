@@ -3,6 +3,7 @@
 {% block title %}{{ user.login }}'s Profile{% endblock %}
 
 {% block body %}
+    <div class="UserInterface">
     <h1>{{ user.login }}</h1>
     <div>
         <p><b>ФИО: </b>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</p>

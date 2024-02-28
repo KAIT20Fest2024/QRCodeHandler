@@ -1,3 +1,19 @@
 td{
-    color:red;
+    text-align: center;
+    color:black;
+}
+td:first-child{
+    text-align: left;
+}
+td:last-child{
+    text-align: right;
+}
+.admin_settings table{
+    width: 100%;
+}
+.CreateButton{
+    position: absolute;
+    top:10%;
+    left:50%;
+    transform: translateX(-50%);
 }
