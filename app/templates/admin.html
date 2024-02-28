@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin.css') }}" />
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Имя</td>
+            <td>Описание</td>
+            <td>Очки</td>
+        </tr>
+        
+            {% for m in mc%}
+            <tr>
+                <td>{{m.name}}</td>
+                <td>{{m.context}}</td>
+                <td>{{m.score}}</td>
+                <td><a href="{{url_for('static', filename='qr/'+m.uid|string+'.png')}}">Нажми меня чтобы открыть QR-code</td>
+                <td><form action="{{url_for('edit', count=m.uid)}}"><button type="submit">Редактировать</button></form></td>
+            </tr>   
+            {%endfor%}
+    </table>
+    <a href="{{url_for('create')}}"><button>Создать</button></a>
+
+</body>
+</html>
