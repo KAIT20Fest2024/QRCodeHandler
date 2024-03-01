@@ -1,6 +1,14 @@
-body {
+*
+{
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+body {
+    background: linear-gradient(to left top, #000000 10%, #1C0044 50%, #CA019E) no-repeat;
+    min-height: 20vh;
+    height: 100vh;
 }
 
 main {
