@@ -1,0 +1,70 @@
+.UserInterface {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  color: white;
+  flex-direction: column;
+}
+.profile__basicInfo {
+  background: linear-gradient(
+    338deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 58%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  border-radius: 5px;
+  box-shadow: 0 1.5px 0 0 rgba(0, 0, 0, 0.1);
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+}
+
+.UserInterface > h1 {
+  font-family: "Stalinist One", sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 20px 0;
+}
+.profile__basicInfo > p {
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background: linear-gradient(
+    132deg,
+    rgba(72, 116, 185, 1) 0%,
+    rgba(133, 63, 145, 1) 100%
+  );
+}
+
+form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+input[type="submit"] {
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(
+    169deg,
+    rgba(72, 116, 185, 1) 13%,
+    rgba(133, 63, 145, 1) 69%
+  );
+  align-self: flex-end;
+}
+
+.profile__masterClassInfo {
+  background: rgba(58, 63, 68, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 1.5px 0 0 rgba(0, 0, 0, 0.1);
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+}
