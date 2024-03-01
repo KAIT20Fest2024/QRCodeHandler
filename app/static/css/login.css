@@ -1,0 +1,11 @@
+.signupform{
+    text-align: center;
+    border: 2px solid #ffffff; /* Черная рамка толщиной 2 пикселя */
+    padding: 20px; /* Добавление отступа внутри формы */
+    border-radius: 10px; /* Закругление углов */
+    background-color: rgba(238, 238, 238, 0.62);
+}
+.formcontainer{
+    width: 50%; /* Ширина контейнера для формы */
+    margin: 20px auto; /* Центрирование контейнера и добавление отступов */
+}

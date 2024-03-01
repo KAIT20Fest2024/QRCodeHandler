@@ -3,7 +3,8 @@
 {% block title %}Sign up{% endblock %}
 
 {% block body %}
-	<form action="" method="post" novalidate>
+    <div class="formcontainer">
+	<form class="signupform" action="" method="post" novalidate>
 	{{ form.hidden_tag() }}
 
 	<p>
@@ -64,7 +65,8 @@
 
 	<p>{{ form.submit() }} </p>
 
-	<sub>Already have an account? <a href="{{ url_for('login') }}">Login</a></sub>
+	<sub>Уже есть аккаунт? <a href="{{ url_for('login') }}">Войти</a></sub>
 
 	</form>
+    </div>
 {% endblock %}

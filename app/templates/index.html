@@ -1,12 +1,12 @@
 {% extends 'components/base.html' %}
 
-{% block title %}Welcome{% endblock %}
+{% block title %}Добро пожаловать!{% endblock %}
 
 {% block body %}
 	{% if current_user.is_authenticated %}
 		<h1>Добро пожаловать, {{ current_user.login }}</h1>
 	{% else %}
-		<h1>Hello, anonymous</h1>
+		<h1>Здравствуйте!</h1>
 	{% endif %}
 
     <div class="msg">

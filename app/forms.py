@@ -13,13 +13,13 @@ class LoginForm(FlaskForm):
 
 
 class SignupForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    fname = StringField('First name', validators=[DataRequired()])
-    mname = StringField('Middle name', validators=[DataRequired()])
-    lname = StringField('Last name', validators=[DataRequired()])
-    school = StringField('School', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm password', validators=[EqualTo('password', message='Passwords do not match')])
+    username = StringField('Имя пользователя', validators=[DataRequired()])
+    fname = StringField('Имя', validators=[DataRequired()])
+    mname = StringField('Отчество', validators=[DataRequired()])
+    lname = StringField('Фамилия', validators=[DataRequired()])
+    school = StringField('Школа', validators=[DataRequired()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    confirm_password = PasswordField('Подтвердите пароль', validators=[EqualTo('password', message='Passwords do not match')])
     submit = SubmitField('Sign up')
 
     def validate_username(self, username):

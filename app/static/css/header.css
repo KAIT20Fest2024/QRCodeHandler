@@ -8,25 +8,7 @@ header {
     min-height: 1.5em;
     box-sizing: border-box;
     transition: background-color .25s;
-
-.gradient {
-	width: 100vw;
-	height: 100vh;
-	background: linear-gradient(334deg, #ffffff, #3ec7e0, #0f56ee,#0049ff);
-	background-size: 180% 180%;
-	animation: gradient-animation 5s ease infinite;
-}
-    @keyframes gradient-animation {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
+    background-color: #aaf7f5;
 }
 
 
