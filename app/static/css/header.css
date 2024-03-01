@@ -6,10 +6,9 @@ header {
     padding: 5px 15px;
     width: 100%;
     min-height: 1.5em;
-    background-color: #fff;
-
     box-sizing: border-box;
     transition: background-color .25s;
+    background-color: #aaf7f5;
 }
 
 
@@ -26,13 +25,17 @@ html:not([data-scroll='0']) {
     }
 }
 
-
 .header__logo,
 .header__nav,
 .header__profile {
     flex: 1;
 }
-
+.header__profile{
+    text-decoration: none;
+}
+.header__profile a:link, a:visited,a:active{
+    color:black;
+}
 .header__logo {
     text-align: start;
 }

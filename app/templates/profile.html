@@ -3,17 +3,18 @@
 {% block title %}{{ user.login }}'s Profile{% endblock %}
 
 {% block body %}
+    <div class="UserInterface">
     <h1>{{ user.login }}</h1>
     <div>
         <p><b>ФИО: </b>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</p>
         <p><b>Школа: </b>{{ user.school_name }}</p>
         <p><b>Счёт: </b>{{ user.score }}</p>
 
-        {% if current_user.login == user.login %}
-        <form action='/logout' method='GET'>
-            <input type='submit' value='Log out'>
-        </form>
-        {% endif %}
+	{% if current_user.login == user.login %}
+	<form action='/logout' method='GET'>
+		<input class="Button" type='submit' value='Выйти из аккаунта'>
+	</form>
+	{% endif %}
     </div>
 
     {% if unattended_mcs %}

@@ -1,4 +1,6 @@
+
 .wrapper {
+    font-size: 30px;
     margin: auto;
     padding: 10px 30px;
     width: 80%;
@@ -13,7 +15,9 @@ th {
     padding: 0 8px 24px 8px;
     text-align: start;
 }
-
+th:nth-child(2){
+    text-align: center;
+}
 td {
     padding: 8px 0;
 }
