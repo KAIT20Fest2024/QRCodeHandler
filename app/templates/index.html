@@ -1,15 +1,26 @@
 {% extends 'components/base.html' %}
 
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Stalinist+One&display=swap" rel="stylesheet">
+{% endblock %}
 {% block title %}Welcome{% endblock %}
 
 {% block body %}
-	{% if current_user.is_authenticated %}
-		<h1>Hello, {{ current_user.login }}</h1>
-	{% else %}
-		<h1>Hello, anonymous</h1>
-	{% endif %}
-
-    <div>
-        <p>Welcome to KAIT20Fest!</p>
-    </div>
+	<div class="Anonymous">
+		<div class="Anonymous_TitleBlock">
+			{% if current_user.is_authenticated %}
+				<h1 class="Anonymous_h1">Привет, {{ current_user.login }}</h1>
+			{% else %}
+				<h1 class="Anonymous_h1">Привет, неизвестный пользователь</h1>
+			{% endif %}
+		</div>
+		<div class="Anonymous_HelloBlock">
+			<p class="HelloBlock_Text"> Тебе нужна информация с Qr кодов. Они находятся у учителей. </p>
+			<p  class="HelloBlock_Text"> Вы дожны послушать мастерклассы преподователей, чтобы получить Qr коды.</p>
+			<p  class="HelloBlock_Text"> Qr код = подарку. Но их у меня мало, а вас много, так что подарки получат лишь самые активные и находчивые. Удачи!</p>
+		</div>
+	</div>
 {% endblock %}

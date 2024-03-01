@@ -1,0 +1,70 @@
+.Anonymous
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 20vh;
+    height: 92vh;
+}
+.Anonymous_TitleBlock
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-items: center;
+    width: 60%;
+    height: 30%;
+    text-align: center;
+}
+.Anonymous_h1
+{
+    font-family: "Stalinist One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 48px;
+    color: #FCF8F5;
+}
+.Anonymous_HelloBlock
+{
+    width: 80%;
+    height: 30%;
+}
+.HelloBlock_Text
+{
+    font-family: "Inika", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 32px;
+    color: #FCF8F5;
+}
+@media screen and (min-width: 300px) and (max-width: 600px) {
+    .Anonymous_TitleBlock
+    {
+        width: 80%;
+    }
+    .Anonymous_h1
+    {
+        font-size: 24px;
+    }
+    .HelloBlock_Text
+    {
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 601px) and (max-width: 800px) {
+    .Anonymous_TitleBlock
+    {
+        width: 80%;
+    }
+    .Anonymous_h1
+    {
+        font-size: 32px;
+    }
+    .HelloBlock_Text
+    {
+        font-size: 24px;
+    }
+}
