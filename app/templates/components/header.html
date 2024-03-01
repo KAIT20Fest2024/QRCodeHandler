@@ -2,10 +2,10 @@
     <span class="header__logo"><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" class="header__logo"></a></span>
 
     <nav class="header__nav">
-        <a class="header__nav_btn header__nav_btn-common" href="{{ url_for('scoreboard') }}">Scoreboard</a>
+        <a class="header__nav_btn header__nav_btn-common" href="{{ url_for('scoreboard') }}">Таблица<br>очков</a>
 
         {% if current_user.login == 'ADMIN' %}
-        <a class="header__nav_btn header__nav_btn-admin" href="{{ url_for('admin') }}">ADMIN PANEL</a>
+        <a class="header__nav_btn header__nav_btn-admin" href="{{ url_for('admin') }}">Панель<br>администратора</a>
         {% endif %}
     </nav>
 

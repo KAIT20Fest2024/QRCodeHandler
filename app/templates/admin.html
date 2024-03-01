@@ -6,6 +6,7 @@
 {% block title %}Admin Panel{% endblock %}
 
 {% block body %}
+    <div class="admin_settings">
     <table>
         <tr>
             <td>Имя</td>
@@ -23,5 +24,6 @@
             </tr>
             {%endfor%}
     </table>
-    <a href="{{url_for('create')}}"><button>Создать</button></a>
+    <a href="{{url_for('create')}}"><button class="CreateButton">Создать</button></a>
+    </div>
 {% endblock %}

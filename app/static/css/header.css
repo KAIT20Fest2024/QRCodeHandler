@@ -11,6 +11,7 @@ header {
 
     box-sizing: border-box;
     transition: background-color .25s;
+
 }
 
 
@@ -26,7 +27,6 @@ html:not([data-scroll='0']) {
         box-shadow: 0 0 .5em rgba(0, 0, 0, .5);
     }
 }
-
 
 .header__logo,
 .header__nav,
