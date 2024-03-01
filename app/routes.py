@@ -111,7 +111,6 @@ def create():
         db.session.commit()
         filename = make_mc_filename(mc.uid)
         mc.hash = filename
-        print(f'FILENAME FOR {mc.uid}: {filename}')
         db.session.commit()
 
         img = qrcode.make(f"localhost/qrhandler/{filename}")
