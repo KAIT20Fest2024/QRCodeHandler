@@ -2,6 +2,7 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 import qrcode, base64
+from os import rename
 
 from app import app, db, login_manager
 from app.forms import LoginForm, SignupForm
@@ -119,9 +120,13 @@ def edit(mc_id):
     mc = MasterClass.query.get(mc_id)
     if mc:
         if request.method == 'GET': return render_template("edit.html", mc=mc)
+        abs_path = '/'.join(__file__.split('/')[:-1])
+        mc_old_filename = f"{url_for('static', filename='qr/')}{mc.uid}{mc.name[0]}{mc.score}.png"
         mc.name = request.form.get('mc_name')
         mc.context = request.form.get('context')
         mc.score = request.form.get('score')
+        mc_new_filename = f"{url_for('static', filename='qr/')}{mc.uid}{mc.name[0]}{mc.score}.png"
         db.session.commit()
+        rename(f'{abs_path}{mc_old_filename}', f'{abs_path}{mc_new_filename}')
     return redirect(url_for('admin'))
 
