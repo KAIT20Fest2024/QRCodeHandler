@@ -17,7 +17,8 @@ def index():
 @app.route("/user/<username>")
 def profile(username: str):
     user = User.query.filter(User.login == username).first()
-    return render_template("profile.html", user=user) if hasattr(user, 'uid') else redirect(url_for('index'))
+    unattended = [mc for mc in MasterClass.query.all() if not current_user in mc.users] if current_user.login == username else None
+    return render_template("profile.html", user=user, unattended_mcs=unattended) if hasattr(user, 'uid') else redirect(url_for('index'))
 
 @app.route("/scoreboard")
 def scoreboard():
@@ -107,8 +108,8 @@ def create():
         db.session.commit()
 
         mc_filename = f'{mc.uid}{mc.name[0]}{mc.score}'
-        img = qrcode.make(f"localhost/qrhandler/{m_filename}")
-        img.save(f"app/{url_for('static', filename='qr/')}{m_filename}.png")
+        img = qrcode.make(f"localhost/qrhandler/{mc_filename}")
+        img.save(f"app/{url_for('static', filename='qr/')}{mc_filename}.png")
 
         return redirect(url_for('admin'))
 

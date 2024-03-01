@@ -16,4 +16,14 @@
         {% endif %}
     </div>
 
+    {% if unattended_mcs %}
+    <div>
+        <h3>There are masterclasses that might interest you!</h3>
+        <div>
+            {% for mc in unattended_mcs %}
+            <p>{{ mc.name }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
