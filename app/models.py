@@ -28,6 +28,7 @@ class User(UserMixin, db.Model):
 class MasterClass(db.Model):
     __tablename__="masterclasses"
     uid = db.Column(db.Integer, primary_key=True)
+    hash = db.Column(db.String(32), index=True, unique=True)
     name = db.Column(db.String(128), index=True, unique=False)
     context = db.Column(db.Text)
     score = db.Column(db.Integer)

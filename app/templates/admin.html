@@ -18,7 +18,7 @@
                 <td>{{m.name}}</td>
                 <td>{{m.context}}</td>
                 <td>{{m.score}}</td>
-                <td><a href="{{url_for('static', filename='qr/'+m.uid|string+m.name[0]+m.score|string+'.png')}}">Нажми меня чтобы открыть QR-code</td>
+                <td><a href="{{url_for('static', filename='qr/')}}{{ shake_128('masterclass'+m.uid|string)+'.png'}}">Нажми меня чтобы открыть QR-code</td>
                 <td><form action="{{url_for('edit', mc_id=m.uid)}}"><button type="submit">Редактировать</button></form></td>
             </tr>
             {%endfor%}

@@ -11,4 +11,8 @@ login_manager = LoginManager(app)
 login_manager.init_app(app)
 migrate = Migrate(app, db)
 
+from hashlib import shake_128
+app.jinja_env.globals.update(shake_128=lambda x: shake_128(bytes(x, 'utf-8')).hexdigest(len(x)))
+# So that Jinja can hash
+
 from app import routes, models

@@ -2,7 +2,7 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 import qrcode, base64
-from os import rename
+from hashlib import shake_128
 
 from app import app, db, login_manager
 from app.forms import LoginForm, SignupForm
@@ -10,6 +10,10 @@ from app.models import User, MasterClass
 
 
 # --- General ---
+def make_mc_filename(mc_id: int):
+    filename = f'masterclass{mc_id}'
+    return shake_128(bytes(filename, 'utf-8')).hexdigest(len(filename))
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -17,7 +21,7 @@ def index():
 @app.route("/user/<username>")
 def profile(username: str):
     user = User.query.filter(User.login == username).first()
-    unattended = [mc for mc in MasterClass.query.all() if not current_user in mc.users] if current_user.login == username else None
+    unattended = [mc for mc in MasterClass.query.all() if not current_user in mc.users] if hasattr(current_user, 'login') and current_user.login == username else None
     return render_template("profile.html", user=user, unattended_mcs=unattended) if hasattr(user, 'uid') else redirect(url_for('index'))
 
 @app.route("/scoreboard")
@@ -25,17 +29,16 @@ def scoreboard():
     users = User.query.order_by(User.score.desc()).filter(User.login != "ADMIN")
     return render_template("scoreboard.html", users=users)
 
-@app.route("/qrhandler/<mc_id>")
+@app.route("/qrhandler/<mc_hash>")
 @login_required
-def qrhandler(mc_id):
-    mc = MasterClass.query.get(mc_id)
+def qrhandler(mc_hash):
+    mc = MasterClass.query.filter(MasterClass.hash == mc_hash).first()
 
-    if current_user in mc.users: return redirect(url_for("profile", username=current_user.login))
-    else:
-        current_user.score += mc.score
-        mc.users.append(current_user)
-        db.session.commit()
-    
+    if not mc or current_user in mc.users: return redirect(url_for("profile", username=current_user.login))
+
+    current_user.score += mc.score
+    mc.users.append(current_user)
+    db.session.commit()
     return render_template("qrhandler.html", mc_score=mc.score, user_score=current_user.score)
 
 
@@ -106,10 +109,13 @@ def create():
         mc = MasterClass(name=request.form.get('name'), context=request.form.get('context'), score=request.form.get('score'))
         db.session.add(mc)
         db.session.commit()
+        filename = make_mc_filename(mc.uid)
+        mc.hash = filename
+        print(f'FILENAME FOR {mc.uid}: {filename}')
+        db.session.commit()
 
-        mc_filename = f'{mc.uid}{mc.name[0]}{mc.score}'
-        img = qrcode.make(f"localhost/qrhandler/{mc_filename}")
-        img.save(f"app/{url_for('static', filename='qr/')}{mc_filename}.png")
+        img = qrcode.make(f"localhost/qrhandler/{filename}")
+        img.save(f"app/{url_for('static', filename='qr/')}{filename}.png")
 
         return redirect(url_for('admin'))
 
@@ -121,13 +127,9 @@ def edit(mc_id):
     mc = MasterClass.query.get(mc_id)
     if mc:
         if request.method == 'GET': return render_template("edit.html", mc=mc)
-        abs_path = '/'.join(__file__.split('/')[:-1])
-        mc_old_filename = f"{url_for('static', filename='qr/')}{mc.uid}{mc.name[0]}{mc.score}.png"
         mc.name = request.form.get('mc_name')
         mc.context = request.form.get('context')
         mc.score = request.form.get('score')
-        mc_new_filename = f"{url_for('static', filename='qr/')}{mc.uid}{mc.name[0]}{mc.score}.png"
         db.session.commit()
-        rename(f'{abs_path}{mc_old_filename}', f'{abs_path}{mc_new_filename}')
     return redirect(url_for('admin'))
 
