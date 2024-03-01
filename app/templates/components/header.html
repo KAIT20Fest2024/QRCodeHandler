@@ -1,19 +1,21 @@
 <header>
-    <span class="header__logo"><a href="/"><img src="{{ url_for('static', filename='img/caps_logo.png') }}" class="header__logo"></a></span>
+    <span class="header__logo"><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" class="header__logo"></a></span>
 
     <nav class="header__nav">
-        <span><a href="{{ url_for('scoreboard') }}">Scoreboard</a></span>
+        <a class="header__nav_btn header__nav_btn-common" href="{{ url_for('scoreboard') }}">Scoreboard</a>
 
         {% if current_user.login == 'ADMIN' %}
-        <span><a href="{{ url_for('admin') }}"><b>ADMIN PANEL</b></a></span>
+        <a class="header__nav_btn header__nav_btn-admin" href="{{ url_for('admin') }}">ADMIN PANEL</a>
         {% endif %}
     </nav>
 
     <span class="header__profile">
-    {% if current_user.is_authenticated %}
-        <a href="{{ url_for('profile', username=current_user.login) }}">{{ current_user.login }}</a>
-    {% else %} 
-        <a href="{{ url_for('login') }}">Login</a>
-    {% endif %}
+        <a class="header__nav_btn header__nav_btn-negative" 
+        {% if current_user.is_authenticated %}
+        href="{{ url_for('profile', username=current_user.login) }}">{{ current_user.login }}
+        {% else %} 
+            href="{{ url_for('login') }}">Login
+        {% endif %}
+        </a>
     </span>
 </header>

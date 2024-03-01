@@ -1,12 +1,13 @@
+/* General + scroll effect */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 5px 15px;
+    padding: 20px 25px;
     width: 100%;
     min-height: 1.5em;
-    background-color: #fff;
+    background: none;
 
     box-sizing: border-box;
     transition: background-color .25s;
@@ -33,6 +34,7 @@ html:not([data-scroll='0']) {
     flex: 1;
 }
 
+/* Logo img */
 .header__logo {
     text-align: start;
 }
@@ -41,10 +43,34 @@ html:not([data-scroll='0']) {
     width: 150px;
 }
 
+/* Navigation */
 .header__nav {
     display: flex;
     justify-content: space-evenly;
     text-align: center;
+}
+
+.header__nav_btn {
+    padding: 12px 75px;
+    border-radius: 50px;
+    color: white; 
+    text-decoration: none;
+}
+
+.header__nav_btn-common {
+    background: linear-gradient(90deg, #9653FD, #7D5DFD, #5D67FD); 
+}
+
+.header__nav_btn-negative {
+    background: none; 
+    outline: solid #4B2D9F;
+}
+.header__nav_btn-negative {
+    
+}
+
+.header__nav_btn-admin {
+    background: linear-gradient(90deg, red, pink); 
 }
 
 .header__profile {
