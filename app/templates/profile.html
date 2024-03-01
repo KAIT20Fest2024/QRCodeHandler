@@ -8,9 +8,14 @@
 	<p><b>Школа: </b>{{ user.school_name }}</p>
 	<p><b>Счёт: </b>{{ user.score }}</p>
 
-	{% if current_user.login == user.login %}
-	<form action='/logout' method='GET'>
-		<input type='submit' value='Log out'>
-	</form>
-	{% endif %}
+    {% if unattended_mcs %}
+    <div>
+        <h3>There are masterclasses that might interest you!</h3>
+        <div>
+            {% for mc in unattended_mcs %}
+            <p>{{ mc.name }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
