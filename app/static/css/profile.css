@@ -110,3 +110,11 @@
         align-items: start;
     }
 }
+
+.wrapper {
+	overflow-y: scroll;
+}
+
+.profile__mc-wrapper {
+	overflow-y: scroll;
+}

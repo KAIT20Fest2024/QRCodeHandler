@@ -114,7 +114,7 @@ def create():
         mc.hash = filename
         db.session.commit()
 
-        img = qrcode.make(f"localhost/qrhandler/{filename}")
+        img = qrcode.make(f"http://festival-kait20.ru/qrhandler/{filename}")
         img.save(f"app/{url_for('static', filename='qr/')}{filename}.png")
 
         return redirect(url_for('admin'))
