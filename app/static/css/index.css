@@ -1,36 +1,38 @@
-*{
+* {
   font-family: "Unbounded", sans-serif;
   font-optical-sizing: auto;
   font-weight: 450;
   font-style: normal;
 }
-.UserInterface{
-	text-align: center;
+.UserInterface {
+  text-align: center;
 }
-h1{
-	font-size: 70px;
-	text-align: center;
+h1 {
+  text-align: center;
 }
-.msg{
-	font-size: 65px;
-	text-align: center;
+.msg {
+  font-size: 2em;
+  text-align: center;
 }
 .gradient {
-	width: 100vw;
-	height: 100vh;
-	background: linear-gradient(334deg, #e549ff, #a932a2, #433cf8, #0f56ee);
-	background-size: 180% 180%;
-	animation: gradient-animation 5s ease infinite;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(334deg, #e549ff, #a932a2, #433cf8, #0f56ee);
+  background-size: 180% 180%;
+  animation: gradient-animation 5s ease infinite;
 }
 
 @keyframes gradient-animation {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
 }

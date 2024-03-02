@@ -10,13 +10,13 @@
 	{% endfor %}
 	{% endif %}
 	{% endwith %}
-
-	<form action="" method="post" novalidate>
+    <div class="formcontainer">
+	<form class="signupform" action="" method="post" novalidate>
         {{ form.hidden_tag() }}
 
         <p>
             {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+            {{ form.username }}<br>
 
             {% for error in form.username.errors %}
                 <span style="color: red;">{{ error }}</span><br>
@@ -25,7 +25,7 @@
 
         <p>
             {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
+            {{ form.password }}<br>
             {% for error in form.password.errors %}
                 <span style="color: red;">{{ error }}</span><br>
             {% endfor %}
@@ -36,4 +36,5 @@
         <p>{{ form.submit() }} </p>
         <sub>Don't have an account yet? <a href="{{ url_for('signup') }}">Sign up</a></sub>
 	</form>
+    </div>
 {% endblock %}

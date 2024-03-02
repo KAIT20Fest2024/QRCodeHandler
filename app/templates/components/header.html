@@ -2,10 +2,10 @@
     <span class="header__logo"><a href="/"><img src="{{ url_for('static', filename='img/caps_logo.png') }}" class="header__logo"></a></span>
 
     <nav class="header__nav">
-        <span><a href="{{ url_for('scoreboard') }}">Таблица<br>очков</a></span>
+        <span><a href="{{ url_for('scoreboard') }}">Таблица очков</a></span>
 
         {% if current_user.login == 'ADMIN' %}
-        <span><a href="{{ url_for('admin') }}"><b>Панель<br>администратора</b></a></span>
+        <span><a href="{{ url_for('admin') }}"><b>Панель администратора</b></a></span>
         {% endif %}
     </nav>
 
@@ -13,7 +13,7 @@
     {% if current_user.is_authenticated %}
         <a href="{{ url_for('profile', username=current_user.login) }}">{{ current_user.login }}</a>
     {% else %} 
-        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('login') }}">Войти</a>
     {% endif %}
     </span>
 </header>

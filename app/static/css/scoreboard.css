@@ -1,40 +1,39 @@
-
 .wrapper {
-    font-size: 30px;
-    margin: auto;
-    padding: 10px 30px;
-    width: 80%;
+  font-size: 1.5em;
+  padding: 10px 30px;
+  width: 80%;
 }
 
 table {
-    width: inherit;
-    margin: inherit;
+  width: inherit;
+  margin: inherit;
 }
 
 th {
-    padding: 0 8px 24px 8px;
-    text-align: start;
+  padding: 0 8px 12px 8px;
+  text-align: start;
 }
-th:nth-child(2){
-    text-align: center;
+th:nth-child(2) {
+  text-align: center;
 }
 td {
-    padding: 8px 0;
+  padding: 5px 0;
 }
 
 .scoreboard__current {
-    font-weight: bold;
-    border: 3px solid red;
+  font-weight: bold;
+  border: 3px solid red;
 }
 
 @media (width <= 600px) {
-    .wrapper {
-        padding: 0;
-        width: 95%;
-        margin: auto;
-    }
+  .wrapper {
+    padding: 0;
+    width: 100%;
+    margin: auto;
+    font-size: 1em;
+  }
 
-    .scoreboard__score {
-        text-align: center;
-    }
+  .scoreboard__score {
+    text-align: center;
+  }
 }
