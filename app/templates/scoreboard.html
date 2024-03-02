@@ -7,26 +7,21 @@
 {% block title %}Scoreboard{% endblock %}
 
 {% block body %}
-<div class="wrapper">
-    <table>
-        <thead>
-            <tr>
-                <th style="padding-right: 24px;">№</th>
-                <th>ФИО</th>
-                <th>Школа</th>
-                <th>Счёт</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-            <tr {% if current_user.login == user.login %}class="scoreboard__current"{% endif %}>
-                <td>{{ loop.index }}</td>
-                <td>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</td>
-                <td>{{ user.school_name }}</td>
-                <td class="scoreboard__score">{{ user.score }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+<p class="scoreboard__title">Лидеры по количеству очков</p>
+<table class="scoreboard">
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td  class="scoreboard__left {% if current_user.login == user.login %}scoreboard__current{% endif %}">
+                <p class="scoreboard__nickname">{{ user.login }}</p>
+                <p class="scoreboard__school">{{ user.school_name }}</p>
+            </td>
+
+            <td class="scoreboard__score scoreboard__left">{{ user.score }}</td>
+
+            <td class="scoreboard__rating scoreboard__right">{{ loop.index }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

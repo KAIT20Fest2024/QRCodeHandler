@@ -1,40 +1,49 @@
-
-.wrapper {
-    font-size: 30px;
-    margin: auto;
-    padding: 10px 30px;
-    width: 80%;
-}
-
-table {
-    width: inherit;
-    margin: inherit;
-}
-
-th {
-    padding: 0 8px 24px 8px;
-    text-align: start;
-}
-th:nth-child(2){
+.scoreboard__title {
+    font-size: 32px;
+    font-weight: 400;
     text-align: center;
 }
+
+.scoreboard {
+    border-spacing: 15px;
+    border-collapse: collapse;
+    font-size: 24px;
+    width: 80%;
+    margin: 0 auto;
+}
+
 td {
-    padding: 8px 0;
+    float: left;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+tr {
+    border-bottom: 1px solid white;
+}
+.scoreboard__nickname {
+}
+
+.scoreboard__school {
+    font-size: 12px;
+}
+
+.scoreboard__score {
+    font-size: 20px;
+}
+
+.scoreboard__rating {
+    font-weight: 900; 
+    border-spacing: 50px 0;
+    float: right;
 }
 
 .scoreboard__current {
-    font-weight: bold;
-    border: 3px solid red;
+    font-weight: 800;
 }
 
-@media (width <= 600px) {
-    .wrapper {
-        padding: 0;
-        width: 95%;
-        margin: auto;
-    }
-
-    .scoreboard__score {
-        text-align: center;
-    }
+.wrapper {
+    justify-content: unset;
+    gap: 5em;
+    overflow-y: scroll;
 }
