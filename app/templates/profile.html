@@ -10,29 +10,83 @@
 {% endblock %}
 
 {% block body %}
-<div class="UserInterface">
-  <h1>{{ user.login }}</h1>
-  <div class="profile__basicInfo">
-    <p><b>ФИО: </b>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</p>
-    <p><b>Школа: </b>{{ user.school_name }}</p>
-    <p><b>Счёт: </b>{{ user.score }}</p>
+	<div class="">
+		<p class="profile__title">{{ user.login }}</p>
+        <p class="profile__block profile__block3">{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</p>
+        <p class="profile__block profile__block1">{{ user.school_name }}</p>
+		<p class="profile__score profile__block profile__block3">Счёт: {{ user.score }}</p>
+
+	</div>
+
+	{% if unattended_mcs %}
+	<div class="">
+        <p class="profile__title">Доступные<br>мастер-классы</p>
+            {% for mc in unattended_mcs %}
+            <div class="profile__mc">
+                <p class="profile__block2">{{ mc.name }}</p>
+                <p class="profile__block1">{{ mc.context }}</p>
+            </div>
+            {% endfor %}
+    </div>
 
     {% if current_user.login == user.login %}
-    <form action='/logout' method='GET'>
-      <input type='submit' value='Выйти из аккаунта'>
-    </form>
+        <form class="profile__logout" action='/logout' method='GET'>
+            <input class="profile__logout-button profile__block2" type='submit' value='Выйти из аккаунта'>
+        </form>
     {% endif %}
-  </div>
-
-  {% if unattended_mcs %}
-  <div class="profile__masterClassInfo">
-    <h3>Мастерклассы</h3>
-    <p>Эти мастерклассы вы ещё не посетили...<p>
-    <div>
-      {% for mc in unattended_mcs %}
-      <p>{{ mc.name }}</p>
-      {% endfor %}
-    </div>
-  </div>
 {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script type="javascript">
+        // Select all slides
+        const slides = document.querySelectorAll(".slide");
+
+        // loop through slides and set each slides translateX
+        slides.forEach((slide, indx) => {
+          slide.style.transform = `translateX(${indx * 100}%)`;
+        });
+
+        // select next slide button
+        const nextSlide = document.querySelector(".btn-next");
+
+        // current slide counter
+        let curSlide = 0;
+        // maximum number of slides
+        let maxSlide = slides.length - 1;
+
+        // add event listener and navigation functionality
+        nextSlide.addEventListener("click", function () {
+          // check if current slide is the last and reset current slide
+          if (curSlide === maxSlide) {
+            curSlide = 0;
+          } else {
+            curSlide++;
+          }
+
+          //   move slide by -100%
+          slides.forEach((slide, indx) => {
+            slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+          });
+        });
+
+        // select next slide button
+        const prevSlide = document.querySelector(".btn-prev");
+
+        // add event listener and navigation functionality
+        prevSlide.addEventListener("click", function () {
+          // check if current slide is the first and reset current slide to last
+          if (curSlide === 0) {
+            curSlide = maxSlide;
+          } else {
+            curSlide--;
+          }
+
+          //   move slide by 100%
+          slides.forEach((slide, indx) => {
+            slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+          });
+        });
+         
+    </script>
 {% endblock %}
