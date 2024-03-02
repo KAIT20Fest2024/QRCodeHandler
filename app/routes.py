@@ -55,10 +55,11 @@ def unathorized():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
+        lname, fname, mname = form.name.data.split()
         new_user = User(login=form.username.data, 
-                        first_name=form.fname.data, 
-                        father_name=form.mname.data, 
-                        last_name=form.lname.data, 
+                        first_name=fname,
+                        father_name=mname, 
+                        last_name=lname, 
                         school_name=form.school.data, 
                         password=form.password.data,
                         )

@@ -1,0 +1,22 @@
+form {
+    padding: 5px;
+    margin: auto;
+}
+
+input {
+    background: none;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.input-group {
+}
+
+.input-block input{
+    margin-bottom: 5px;
+}
+
+.wrapper {
+    overflow-y: scroll;
+}
