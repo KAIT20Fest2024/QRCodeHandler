@@ -1,32 +1,25 @@
-/* General + scroll effect */
+/* General */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 20px 25px;
+    padding: 20px 55px;
     width: 100%;
-    min-height: 1.5em;
-    background: none;
 
     box-sizing: border-box;
-    transition: background-color .25s;
 
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 200;
 }
 
-
-html:not([data-scroll='0']) {
-    body {
-        padding-top: 4.5em;
-    }
-
-    header {
-        position: fixed;
-        top: 0;
-        background-color: #eee;
-        box-shadow: 0 0 .5em rgba(0, 0, 0, .5);
-    }
+header a {
+    text-decoration: none;    
+    color: inherit;
+    padding: 10px 0;
 }
+
 
 .header__logo,
 .header__nav,
@@ -34,55 +27,62 @@ html:not([data-scroll='0']) {
     flex: 1;
 }
 
-/* Logo img */
-.header__logo {
+/* Navigation */
+.header__nav {
+    justify-content: space-evenly;
     text-align: start;
 }
 
-.header__logo img {
-    width: 150px;
+.header__nav ul {
+    list-style-type: none;
 }
 
-/* Navigation */
-.header__nav {
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
+.header__nav li {
+    padding: 15px 0;
 }
 
 .header__nav_btn {
     padding: 12px 75px;
+    margin: 5px;
     border-radius: 50px;
     color: white; 
     text-decoration: none;
 }
 
-.header__nav_btn-common {
-    background: linear-gradient(90deg, #9653FD, #7D5DFD, #5D67FD); 
+/* Logo img */
+.header__logo {
+    text-align: center;
 }
 
-.header__nav_btn-negative {
-    background: none; 
-    outline: solid #4B2D9F;
-}
-.header__nav_btn-negative {
-    
-}
-
-.header__nav_btn-admin {
-    background: linear-gradient(90deg, red, pink); 
+.header__logo img {
+    width: 250px;
 }
 
 .header__profile {
     text-align: end;
 }
 
-@media (width < 600px) {
+@media (width < 800px) {
     header {
         justify-content: space-evenly;
+        padding: 20px 25px;
     }    
 
     .header__logo img {
-        width: 100px;
+        width: 200px;
+    }
+}
+
+@media (width < 600px) {
+    
+    .header__logo img {
+        width: 150px;
+    }
+}
+
+@media (width < 450px) {
+    
+    .header__logo img {
+        width: 80px;
     }
 }

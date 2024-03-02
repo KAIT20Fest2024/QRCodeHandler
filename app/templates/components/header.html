@@ -1,16 +1,22 @@
 <header>
-    <span class="header__logo"><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" class="header__logo"></a></span>
-
     <nav class="header__nav">
-        <a class="header__nav_btn header__nav_btn-common" href="{{ url_for('scoreboard') }}">Таблица<br>очков</a>
+        <ul>
+            <li class="">
+                <a href="{{ url_for('scoreboard') }}">Таблица лидеров</a>
+            </li>
 
-        {% if current_user.login == 'ADMIN' %}
-        <a class="header__nav_btn header__nav_btn-admin" href="{{ url_for('admin') }}">Панель<br>администратора</a>
-        {% endif %}
+            {% if current_user.login == 'ADMIN' %}
+            <li class="">
+                <a href="{{ url_for('admin') }}">Админ-панель</a>
+            </li>
+            {% endif %}
+        </ul>
     </nav>
 
+    <span class="header__logo"><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" class="header__logo"></a></span>
+
     <span class="header__profile">
-        <a class="header__nav_btn header__nav_btn-negative" 
+        <a class="" 
         {% if current_user.is_authenticated %}
         href="{{ url_for('profile', username=current_user.login) }}">{{ current_user.login }}
         {% else %} 
