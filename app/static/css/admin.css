@@ -1,6 +1,5 @@
 td{
     text-align: center;
-    color:black;
 }
 td:first-child{
     text-align: left;
@@ -8,6 +7,14 @@ td:first-child{
 td:last-child{
     text-align: right;
 }
+th {
+	font-weight: 700;
+}
+
+.admin_settings {
+	overflow-y: scroll;
+}
+
 .admin_settings table{
     width: 100%;
 }
@@ -16,4 +23,15 @@ td:last-child{
     top:10%;
     left:50%;
     transform: translateX(-50%);
+}
+
+.wrapper {
+	overflow-y: scroll;
+}
+
+button {
+    background: none;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px;
 }

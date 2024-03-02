@@ -22,6 +22,7 @@ tr {
     border-bottom: 1px solid white;
 }
 .scoreboard__nickname {
+	padding-right: 15px;
 }
 
 .scoreboard__school {
