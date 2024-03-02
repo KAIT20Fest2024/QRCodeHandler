@@ -1,21 +1,14 @@
 .Anonymous {
+  width: 85%;
+
+  max-height: 60vh;
+  height: 100%;
+
+  margin: auto;
+
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-  min-height: 20vh;
-  height: 92vh;
-}
-.Anonymous_TitleBlock {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-items: center;
-  width: 60%;
-  height: 30%;
-  text-align: center;
 }
 .Anonymous_h1 {
   font-family: "Stalinist One", sans-serif;
@@ -35,7 +28,7 @@
   font-size: 32px;
   color: #fcf8f5;
 }
-@media screen and (min-width: 300px) and (max-width: 600px) {
+@media screen and (width > 300px) and (width < 600px) {
   .Anonymous_TitleBlock {
     width: 80%;
   }
@@ -46,7 +39,7 @@
     font-size: 16px;
   }
 }
-@media screen and (min-width: 601px) and (max-width: 800px) {
+@media screen and (width >= 601px) and (width < 800px) {
   .Anonymous_TitleBlock {
     width: 80%;
   }
@@ -56,4 +49,21 @@
   .HelloBlock_Text {
     font-size: 24px;
   }
+}
+
+@media screen and (width < 600px) {
+    .header__logo {
+        display: none;
+    }
+
+    .wrapper {
+        background-image: url('/static/img/logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+
+    .Anonymous_TitleBlock {
+        padding-top: 45px;
+    }
 }
